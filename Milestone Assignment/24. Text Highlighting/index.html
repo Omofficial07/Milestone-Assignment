@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight Long Words</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Highlight Long Words</h1>
+    <p id="text">
+        This is a demonstration paragraph where words greater than eight characters will be highlighted automatically. 
+        Words like extraordinary, implementation, and demonstration should stand out.
+    </p>
+    <button id="highlightButton">Highlight Words</button>
+
+    <script>
+        const highlightButton = document.getElementById("highlightButton");
+        const paragraph = document.getElementById("text");
+
+        highlightButton.addEventListener("click", () => {
+            // Split the paragraph text into words
+            const words = paragraph.textContent.split(" ");
+
+            // Map through words and highlight those greater than 8 characters
+            const highlightedWords = words.map(word => {
+                if (word.length > 8) {
+                    return `<span class="highlight">${word}</span>`;
+                }
+                return word;
+            });
+
+            // Join the words back and update the paragraph's inner HTML
+            paragraph.innerHTML = highlightedWords.join(" ");
+        });
+    </script>
+</body>
+</html>

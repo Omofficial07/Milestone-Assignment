@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px auto;
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            background-color: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .delete:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do App</h1>
+    <div>
+        <input type="text" id="todoInput" placeholder="Enter your to-do item">
+        <button id="addButton">Add</button>
+    </div>
+    <ul id="todoList"></ul>
+
+    <script>
+        const todoInput = document.getElementById("todoInput");
+        const addButton = document.getElementById("addButton");
+        const todoList = document.getElementById("todoList");
+
+        // Add a new to-do item
+        addButton.addEventListener("click", () => {
+            const todoText = todoInput.value.trim();
+
+            if (todoText === "") {
+                alert("Please enter a valid to-do item.");
+                return;
+            }
+
+            // Create a new list item
+            const listItem = document.createElement("li");
+            listItem.textContent = todoText;
+
+            // Create a delete button for the item
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete";
+
+            // Add delete functionality
+            deleteButton.addEventListener("click", () => {
+                todoList.removeChild(listItem);
+            });
+
+            // Append the delete button to the list item
+            listItem.appendChild(deleteButton);
+
+            // Add the list item to the to-do list
+            todoList.appendChild(listItem);
+
+            // Clear the input field
+            todoInput.value = "";
+        });
+    </script>
+</body>
+</html>

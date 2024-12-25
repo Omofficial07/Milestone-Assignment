@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What You'll Learn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px auto;
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            margin-top: 10px;
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>What You'll Learn</h1>
+    <ul id="learnList"></ul>
+    <button id="addItemButton">Add Item</button>
+    <p id="message"></p>
+
+    <script>
+        // Pre-existing array of list items
+        const itemsToLearn = [
+            "HTML basics and structure",
+            "CSS styling and layouts",
+            "JavaScript fundamentals",
+            "DOM manipulation",
+            "Event handling in JavaScript",
+            "Responsive design principles",
+            "Web development best practices"
+        ];
+
+        let currentIndex = 0; // To keep track of the next item to add
+        const learnList = document.getElementById("learnList");
+        const addItemButton = document.getElementById("addItemButton");
+        const message = document.getElementById("message");
+
+        addItemButton.addEventListener("click", () => {
+            if (currentIndex < itemsToLearn.length) {
+                // Add the next item to the list
+                const listItem = document.createElement("li");
+                listItem.textContent = itemsToLearn[currentIndex];
+                learnList.appendChild(listItem);
+                currentIndex++; // Move to the next item
+                message.textContent = ""; // Clear any previous message
+            } else {
+                // Display a message when all items have been added
+                message.textContent = "All items have been added!";
+            }
+        });
+    </script>
+</body>
+</html>
